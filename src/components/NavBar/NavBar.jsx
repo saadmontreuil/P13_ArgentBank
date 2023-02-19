@@ -11,11 +11,11 @@ export default function NavBar() {
         <img className={styles.logo} alt="argent bank logo" src={logo} />
       </Link>
       <div className={styles.signIn}>
-      <FaUserCircle />
-      <Link to="/login" className={styles.link}>
-        Sign In
-      </Link>
-    </div>
+        <FaUserCircle />
+        <Link to="/login" className={styles.link}>
+            Sign In
+        </Link>
+       </div>
     </nav>
   )
 }

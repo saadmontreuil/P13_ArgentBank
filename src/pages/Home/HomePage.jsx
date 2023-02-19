@@ -5,9 +5,10 @@ import FeatureContents from '../../data/Features.json'
 import stylesFeatures from '../../components/Features/Features.module.css'
 
 
+
 export default function HomePage() {
   return (
-    <>
+    <div className='main'>
         <Banner />
         <div className={stylesFeatures.features}>
         {FeatureContents.map((content) => {
@@ -21,6 +22,6 @@ export default function HomePage() {
           );
         })}
       </div>
-    </>
+    </div>
   )
 }
