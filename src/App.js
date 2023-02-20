@@ -1,10 +1,11 @@
-import logo from './logo.svg';
+import React from 'react';
 import './App.css';
 import NavBar from './components/NavBar/NavBar';
 import HomePage from './pages/Home/HomePage';
 import { Routes, Route } from 'react-router-dom';
 import Footer from './components/Footer/Footer';
 import LoginPage from './pages/Login/LoginPage';
+import ProfilePage from './pages/Profile/ProfilePage';
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/login" element={<LoginPage />} />
+        <Route path="/profile" element={<ProfilePage />} />
       </Routes>
       <Footer/>
     </div>

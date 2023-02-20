@@ -1,0 +1,75 @@
+.account {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid black;
+    background-color: white;
+    width: 80%;
+    margin: 0 auto;
+    padding: 1.5rem;
+    box-sizing: border-box;
+    text-align: left;
+    margin-bottom: 2rem;
+  }
+  .button {
+    display: block;
+    width: 100%;
+    padding: 8px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    margin-top: 1rem;
+    border-color: #00bc77;
+    background-color: #00bc77;
+    color: #fff;
+    text-decoration: none;
+  }
+  
+  .content {
+    width: 100%;
+    flex: 1;
+  }
+  
+  .title {
+    margin: 0;
+    padding: 0;
+    font-size: 1rem;
+    font-weight: normal;
+  }
+  
+  .amount {
+    margin: 0;
+    font-size: 2.5rem;
+    font-weight: bold;
+  }
+  
+  .description {
+    margin: 0;
+  }
+  
+
+  
+  @media (min-width: 720px) {
+    .container {
+      flex-direction: row;
+    }
+    .cta {
+      flex: 0;
+      width: 100%;
+      flex: 1;
+    }
+  
+    .button {
+      width: 200px;
+    }
+  }
+  
+  @media (max-width: 720px) {
+    .container {
+      flex-direction: column;
+      text-align: center;
+    }
+    .amount {
+      font-size: 2rem;
+    }
+  }
+  
