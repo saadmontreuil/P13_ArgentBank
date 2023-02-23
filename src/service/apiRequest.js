@@ -20,3 +20,18 @@ export default function loginUser(email, password) {
       throw error;
     });
 }
+
+export const profileUser = (token) => {
+  const headers = {
+    'Content-Type': 'application/json',
+    Accept: 'application/json',
+    Authorization: `Bearer ${token}`,
+  };
+
+  return axios.post(`${BASE_URL}/user/profile`, { headers })
+    .then((response) => response.data)
+    .catch((error) => {
+      console.error(error);
+      throw error;
+    });
+};

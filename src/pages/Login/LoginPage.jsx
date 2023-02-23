@@ -18,6 +18,7 @@ export default function LoginPage() {
       .then((response) => {
         console.log(response);
         if (response.status === 200) {
+          localStorage.setItem('token', response.body.token);
           navigate('/profile');
         }
         console.log(response.message);
