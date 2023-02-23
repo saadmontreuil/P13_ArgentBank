@@ -1,5 +1,5 @@
-import React from 'react'
-import styles from './Banner.module.css'
+import React from 'react';
+import styles from './Banner.module.css';
 
 export default function Banner() {
   return (
@@ -11,5 +11,5 @@ export default function Banner() {
         <p className={styles.text}>Open a savings account with Argent Bank today!</p>
       </section>
     </div>
-  )
+  );
 }

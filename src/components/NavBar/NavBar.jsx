@@ -1,8 +1,8 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
-import logo from '../../images/logo.png'
-import { FaUserCircle } from 'react-icons/fa'
-import styles from './NavBar.module.css'
+import React from 'react';
+import { Link } from 'react-router-dom';
+import { FaUserCircle } from 'react-icons/fa';
+import logo from '../../images/logo.png';
+import styles from './NavBar.module.css';
 
 export default function NavBar() {
   return (
@@ -13,9 +13,9 @@ export default function NavBar() {
       <div className={styles.signIn}>
         <FaUserCircle />
         <Link to="/login" className={styles.link}>
-            Sign In
+          Sign In
         </Link>
-       </div>
+      </div>
     </nav>
-  )
+  );
 }
