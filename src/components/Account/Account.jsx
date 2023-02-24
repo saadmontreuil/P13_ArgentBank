@@ -24,6 +24,6 @@ export default function Account({ name, amount, desc }) {
 
 Account.propTypes = {
   name: PropTypes.string.isRequired,
-  amount: PropTypes.number.isRequired,
+  amount: PropTypes.string.isRequired,
   desc: PropTypes.string.isRequired,
 };

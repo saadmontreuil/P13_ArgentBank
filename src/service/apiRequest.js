@@ -21,17 +21,30 @@ export default function loginUser(email, password) {
     });
 }
 
-export const profileUser = (token) => {
-  const headers = {
-    'Content-Type': 'application/json',
-    Accept: 'application/json',
+export const profileUser = (token) => axios.post(`${BASE_URL}/user/profile`, {}, {
+  headers: {
     Authorization: `Bearer ${token}`,
-  };
+    Accept: 'application/json',
+    'Content-Type': 'application/json',
+  },
+})
+  .then((response) => {
+    console.log(response);
+    return response.data;
+  })
+  .catch((error) => {
+    console.error(error);
+    throw error;
+  });
 
-  return axios.post(`${BASE_URL}/user/profile`, { headers })
-    .then((response) => response.data)
-    .catch((error) => {
-      console.error(error);
-      throw error;
-    });
-};
+// axios.get('http://example.com/api/v1/users', {
+//   headers: {
+//     Authorization: `Bearer ${token}`,
+//   },
+// })
+//   .then((response) => {
+//     console.log(response.data);
+//   })
+//   .catch((error) => {
+//     console.error(error);
+//   });
