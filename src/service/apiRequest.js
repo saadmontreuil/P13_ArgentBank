@@ -2,7 +2,7 @@ import axios from 'axios';
 
 const BASE_URL = 'http://localhost:3001/api/v1';
 
-export default function loginUser(email, password) {
+export function loginUser(email, password) {
   const requestBody = {
     email,
     password,

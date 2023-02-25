@@ -17,9 +17,7 @@ export default function ProfilePage() {
         try {
           const response = await profileUser(token);
           const userProfileData = response.body;
-          console.log(userProfileData);
           localStorage.setItem('userProfileData', JSON.stringify(userProfileData));
-          console.log(response);
         } catch (error) {
           console.error(error);
         }
