@@ -36,15 +36,13 @@ export const profileUser = (token) => axios.post(`${BASE_URL}/user/profile`, {},
     console.error(error);
     throw error;
   });
-
-// axios.get('http://example.com/api/v1/users', {
-//   headers: {
-//     Authorization: `Bearer ${token}`,
-//   },
-// })
-//   .then((response) => {
-//     console.log(response.data);
-//   })
-//   .catch((error) => {
-//     console.error(error);
-//   });
+export const updateUser = (firstName, lastName, token) => axios.put(`${BASE_URL}/user/profile`, {
+  firstName,
+  lastName,
+}, {
+  headers: {
+    Authorization: `Bearer ${token}`,
+    'Content-Type': 'application/json',
+    accept: 'application/json',
+  },
+});
