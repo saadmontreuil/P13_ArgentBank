@@ -15,14 +15,14 @@ export default function Header() {
       setFirstName(data.firstName);
       setLastName(data.lastName);
     }
-  }, []);
+  }, [localStorage.getItem('userProfileData')]);
 
   const handleSaveName = () => {
     const token = localStorage.getItem('token');
     updateUser(firstName, lastName, token)
       .then((response) => {
         console.log(response);
-        setUserProfileData({ ...userProfileData, firstName, lastName });
+        setUserProfileData((prevData) => ({ ...prevData, firstName, lastName }));
         setIsEditingName(false);
       }).catch((error) => {
         console.log(error);

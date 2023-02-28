@@ -14,7 +14,7 @@ export default function Account({ name, amount, desc }) {
         <p className={styles.description}>{desc}</p>
       </div>
       <div className={styles.cta}>
-        <Link to="/user" className={styles.link}>
+        <Link to="/transaction" className={styles.link}>
           <button type="submit" className={styles.button}>View transactions</button>
         </Link>
       </div>

@@ -1,0 +1,56 @@
+[
+    {
+    "id": 1,
+    "date": "January 15th, 2023",
+    "description": "Starbucks Coffee",
+    "amount": "$6.50",
+    "balance": "$2300.00",
+    "type": "Food",
+    "category": "Personal"
+    },
+    {
+    "id": 2,
+    "date": "January 16th, 2023",
+    "description": "Amazon.com",
+    "amount": "$58.20",
+    "balance": "$2241.80",
+    "type": "Online Shopping",
+    "category": "Shopping"
+    },
+    {
+    "id": 3,
+    "date": "January 18th, 2023",
+    "description": "Shell Gas Station",
+    "amount": "$30.00",
+    "balance": "$2211.80",
+    "type": "Gas",
+    "category": "Transportation"
+    },
+    {
+    "id": 4,
+    "date": "January 20th, 2023",
+    "description": "Netflix",
+    "amount": "$14.99",
+    "balance": "$2196.81",
+    "type": "Subscription",
+    "category": "Entertainment"
+    },
+    {
+    "id": 5,
+    "date": "January 21st, 2023",
+    "description": "Target",
+    "amount": "$35.75",
+    "balance": "$2161.06",
+    "type": "Retail",
+    "category": "Shopping"
+    },
+    {
+    "id": 6,
+    "date": "January 25th, 2023",
+    "description": "Gasparilla Pirate Fest",
+    "amount": "$25.00",
+    "balance": "$2136.06",
+    "type": "Event",
+    "category": "Entertainment"
+    }
+]

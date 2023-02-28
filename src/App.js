@@ -7,6 +7,7 @@ import Footer from './components/Footer/Footer';
 import LoginPage from './pages/Login/LoginPage';
 import ProfilePage from './pages/Profile/ProfilePage';
 import Error404 from './pages/Error/Error404Page';
+import Transaction from './pages/Transaction/TransactionPage';
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
         <Route path="/" element={<HomePage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/profile" element={<ProfilePage />} />
+        <Route path="/transaction" element={<Transaction />} />
         <Route path="*" element={<Error404 />} />
 
       </Routes>
