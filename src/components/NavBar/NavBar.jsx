@@ -5,13 +5,14 @@ import logo from '../../images/logo.png';
 import styles from './NavBar.module.css';
 
 export default function NavBar() {
-  const userProfileData = JSON.parse(localStorage.getItem('userProfileData'));
+  // const userProfileData = JSON.parse(localStorage.getItem('userProfileData'));
+  const token = localStorage.getItem('token');
   const navigate = useNavigate();
 
   const handleSignOut = () => {
     localStorage.removeItem('token');
-    localStorage.removeItem('userProfileData');
-    navigate.push('/login');
+    // localStorage.removeItem('userProfileData');
+    navigate.push('/');
   };
 
   return (
@@ -21,7 +22,7 @@ export default function NavBar() {
       </Link>
       <div className={styles.signIn}>
         <FaUserCircle />
-        {userProfileData ? (
+        {token ? (
           <Link to="/" onClick={handleSignOut} className={styles.link}>
             Sign Out
           </Link>

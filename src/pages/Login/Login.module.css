@@ -50,3 +50,11 @@
     padding: 5px;
     font-size: 1.2rem;
   }
+
+  .input.error input {
+    border-color: red;
+  }
+  .errorMsg {
+    color: red;
+    font-size: 0.8rem;
+  }

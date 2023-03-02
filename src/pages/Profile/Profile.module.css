@@ -3,3 +3,58 @@
     padding: 6rem;
     min-height: calc(100vh - 145px);
 }
+
+.header {
+    color: #fff;
+    margin-bottom: 2rem;
+}
+.button {
+    border-color: #00bc77;
+    background-color: #00bc77;
+    color: #fff;
+    font-weight: bold;
+    padding: 10px;
+}
+input{
+    padding: 10px;
+    font-size: 1.2rem;
+}
+
+.editName {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 1rem;
+    gap: 1rem;
+    padding: 1rem;
+  }
+  h1{
+    margin-bottom: 10px;
+  }
+
+.inputName {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+  }
+  
+  .inputName input {
+    padding: 5px 20px;
+    border: 1px solid aliceblue;
+  }
+  .editButton button{
+    margin: 0 1rem;
+  }
+
+  @media (max-width: 500px) {
+    .inputName {
+      flex-direction: column;
+    }
+  }
+  
+  @media (max-width: 350px) {
+    .editButton button {
+      margin-top: 1rem;
+    }
+  }
+  
