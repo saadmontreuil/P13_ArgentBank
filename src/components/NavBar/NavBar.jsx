@@ -1,18 +1,19 @@
 import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
 import { FaUserCircle } from 'react-icons/fa';
+import { logout } from '../../service/redux/authSlice';
 import logo from '../../images/logo.png';
 import styles from './NavBar.module.css';
 
 export default function NavBar() {
-  // const userProfileData = JSON.parse(localStorage.getItem('userProfileData'));
-  const token = localStorage.getItem('token');
+  const token = useSelector((state) => state.auth.token);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const handleSignOut = () => {
-    localStorage.removeItem('token');
-    // localStorage.removeItem('userProfileData');
-    navigate.push('/');
+    dispatch(logout());
+    navigate('/');
   };
 
   return (

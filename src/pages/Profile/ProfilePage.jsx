@@ -1,5 +1,6 @@
 import { React, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 import Account from '../../components/Account/Account';
 import styles from './Profile.module.css';
 import Accounts from '../../data/Accounts.json';
@@ -7,12 +8,13 @@ import { profileUser, updateUser } from '../../service/apiRequest';
 
 export default function ProfilePage() {
   const navigate = useNavigate();
+  const token = useSelector((state) => state.auth.token);
   const [userProfileData, setUserProfileData] = useState(null);
   const [isEditingName, setIsEditingName] = useState(false);
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
+
   useEffect(() => {
-    const token = localStorage.getItem('token');
     if (!token) {
       navigate('/login');
     } else {
@@ -28,10 +30,9 @@ export default function ProfilePage() {
       };
       fetchData();
     }
-  }, []);
+  }, [token, navigate]);
 
   const handleSaveName = () => {
-    const token = localStorage.getItem('token');
     updateUser(firstName, lastName, token)
       .then((response) => {
         console.log(response);
@@ -90,10 +91,7 @@ export default function ProfilePage() {
             desc={account.desc}
           />
         ))}
-
       </div>
-
     </div>
-
   );
 }
