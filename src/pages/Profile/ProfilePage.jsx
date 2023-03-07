@@ -1,18 +1,19 @@
 import { React, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import Account from '../../components/Account/Account';
 import styles from './Profile.module.css';
 import Accounts from '../../data/Accounts.json';
 import { profileUser, updateUser } from '../../service/apiRequest';
+import { updateProfil } from '../../service/redux/authSlice';
 
 export default function ProfilePage() {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const token = useSelector((state) => state.auth.token);
-  const [userProfileData, setUserProfileData] = useState(null);
+  // const [userProfileData, setUserProfileData] = useState(null);
+  const userProfileData = useSelector((state) => state.auth);
   const [isEditingName, setIsEditingName] = useState(false);
-  const [firstName, setFirstName] = useState('');
-  const [lastName, setLastName] = useState('');
 
   useEffect(() => {
     if (!token) {
@@ -22,7 +23,7 @@ export default function ProfilePage() {
         try {
           const response = await profileUser(token);
           console.log(userProfileData);
-          setUserProfileData(response.body);
+          dispatch(updateProfil(response.body));
           console.log(response);
         } catch (error) {
           console.error(error);
@@ -33,10 +34,10 @@ export default function ProfilePage() {
   }, [token, navigate]);
 
   const handleSaveName = () => {
-    updateUser(firstName, lastName, token)
+    updateUser(userProfileData.firstName, userProfileData.lastName, token)
       .then((response) => {
         console.log(response);
-        setUserProfileData((prevData) => ({ ...prevData, firstName, lastName }));
+        // setUserProfileData((prevData) => ({ ...prevData, firstName, lastName }));
         setIsEditingName(false);
       }).catch((error) => {
         console.log(error);
@@ -45,8 +46,13 @@ export default function ProfilePage() {
 
   const handleCancelNameEdit = () => {
     setIsEditingName(false);
-    setFirstName(userProfileData.firstName);
-    setLastName(userProfileData.lastName);
+  };
+  const handleFirstNameChange = (e) => {
+    dispatch(updateProfil({ ...userProfileData, firstName: e.target.value }));
+  };
+
+  const handleLastNameChange = (e) => {
+    dispatch(updateProfil({ ...userProfileData, lastName: e.target.value }));
   };
 
   return (
@@ -58,13 +64,13 @@ export default function ProfilePage() {
               <div className={styles.inputName}>
                 <input
                   type="text"
-                  value={firstName}
-                  onChange={(e) => setFirstName(e.target.value)}
+                  value={userProfileData.firstName}
+                  onChange={handleFirstNameChange}
                 />
                 <input
                   type="text"
-                  value={lastName}
-                  onChange={(e) => setLastName(e.target.value)}
+                  value={userProfileData.lastName}
+                  onChange={handleLastNameChange}
                 />
               </div>
               <div className={styles.editButton}>
