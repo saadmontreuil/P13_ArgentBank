@@ -22,7 +22,7 @@ export default function ProfilePage() {
       const fetchData = async () => {
         try {
           const response = await profileUser(token);
-          console.log(userProfileData);
+          console.log(response);
           dispatch(updateProfil(response.body));
           console.log(response);
         } catch (error) {
@@ -31,13 +31,12 @@ export default function ProfilePage() {
       };
       fetchData();
     }
-  }, [token, navigate]);
+  }, [token]);
 
   const handleSaveName = () => {
     updateUser(userProfileData.firstName, userProfileData.lastName, token)
       .then((response) => {
         console.log(response);
-        // setUserProfileData((prevData) => ({ ...prevData, firstName, lastName }));
         setIsEditingName(false);
       }).catch((error) => {
         console.log(error);
@@ -54,11 +53,16 @@ export default function ProfilePage() {
   const handleLastNameChange = (e) => {
     dispatch(updateProfil({ ...userProfileData, lastName: e.target.value }));
   };
+  console.log(userProfileData);
 
   return (
     <div className="main">
       <div className={styles.dark}>
         <div className={styles.header}>
+          <h1>
+            Welcome back
+            <br />
+          </h1>
           {isEditingName ? (
             <div className={styles.editName}>
               <div className={styles.inputName}>
@@ -81,8 +85,6 @@ export default function ProfilePage() {
           ) : (
             <>
               <h1>
-                Welcome back
-                <br />
                 {userProfileData?.firstName} {userProfileData?.lastName}!
               </h1>
               <button type="submit" className={styles.button} onClick={() => setIsEditingName(true)}> Edit Name</button>

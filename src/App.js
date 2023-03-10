@@ -7,6 +7,7 @@ import Footer from './components/Footer/Footer';
 import LoginPage from './pages/Login/LoginPage';
 import ProfilePage from './pages/Profile/ProfilePage';
 import Error404 from './pages/Error/Error404Page';
+import PrivateRoute from './components/PrivateRoute/PrivateRoute';
 
 function App() {
   return (
@@ -15,13 +16,13 @@ function App() {
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/login" element={<LoginPage />} />
-        <Route path="/profile" element={<ProfilePage />} />
+        <Route exact path="/" element={<PrivateRoute />}>
+          <Route exact path="/profile" element={<ProfilePage />} />
+        </Route>
         <Route path="*" element={<Error404 />} />
-
       </Routes>
       <Footer />
     </div>
-
   );
 }
 

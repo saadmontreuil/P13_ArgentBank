@@ -1,4 +1,4 @@
-import { React, useState } from 'react';
+import { React, useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { FaUserCircle } from 'react-icons/fa';
@@ -14,6 +14,14 @@ export default function LoginPage() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+    if (token) {
+      dispatch(login({ email: '', token }));
+      navigate('/profile');
+    }
+  }, []);
+
   function handleSubmit(event) {
     event.preventDefault();
 
@@ -22,6 +30,7 @@ export default function LoginPage() {
         console.log(response);
         if (response.status === 200) {
           dispatch(login({ email, token: response.body.token }));
+          localStorage.setItem('token', response.body.token);
           navigate('/profile');
         } else {
           setError({ status: true, message: response.message });

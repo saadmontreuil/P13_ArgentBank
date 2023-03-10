@@ -5,6 +5,7 @@ const initialState = {
   token: null,
   firstName: null,
   lastName: null,
+  isLogged: false,
 };
 
 const authSlice = createSlice({
@@ -15,12 +16,14 @@ const authSlice = createSlice({
       const { email, token } = action.payload;
       state.email = email;
       state.token = token;
+      state.isLogged = true;
     },
     logout(state) {
       state.email = null;
       state.token = null;
       state.firstName = null;
       state.lastName = null;
+      state.isLogged = false;
     },
     updateProfil(state, action) {
       const { firstName, lastName } = action.payload;
