@@ -4,19 +4,20 @@ import { useSelector, useDispatch } from 'react-redux';
 import Account from '../../components/Account/Account';
 import styles from './Profile.module.css';
 import Accounts from '../../data/Accounts.json';
-import { profileUser, updateUser } from '../../service/apiRequest';
+import { updateUser, profileUser } from '../../service/apiRequest';
 import { updateProfil } from '../../service/redux/authSlice';
 
 export default function ProfilePage() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const token = useSelector((state) => state.auth.token);
-  // const [userProfileData, setUserProfileData] = useState(null);
+  const isLogged = useSelector((state) => state.auth.isLogged);
   const userProfileData = useSelector((state) => state.auth);
   const [isEditingName, setIsEditingName] = useState(false);
+  const [updatedUserData, setUpdatedUserData] = useState({});
 
   useEffect(() => {
-    if (!token) {
+    if (!isLogged) {
       navigate('/login');
     } else {
       const fetchData = async () => {
@@ -34,10 +35,19 @@ export default function ProfilePage() {
   }, [token]);
 
   const handleSaveName = () => {
-    updateUser(userProfileData.firstName, userProfileData.lastName, token)
+    updateUser(
+      updatedUserData.firstName || userProfileData.firstName,
+      updatedUserData.lastName || userProfileData.lastName,
+      token,
+    )
       .then((response) => {
         console.log(response);
         setIsEditingName(false);
+        dispatch(updateProfil({
+          ...userProfileData,
+          firstName: updatedUserData.firstName || userProfileData.firstName,
+          lastName: updatedUserData.lastName || userProfileData.lastName,
+        }));
       }).catch((error) => {
         console.log(error);
       });
@@ -46,14 +56,14 @@ export default function ProfilePage() {
   const handleCancelNameEdit = () => {
     setIsEditingName(false);
   };
+
   const handleFirstNameChange = (e) => {
-    dispatch(updateProfil({ ...userProfileData, firstName: e.target.value }));
+    setUpdatedUserData({ ...updatedUserData, firstName: e.target.value });
   };
 
   const handleLastNameChange = (e) => {
-    dispatch(updateProfil({ ...userProfileData, lastName: e.target.value }));
+    setUpdatedUserData({ ...updatedUserData, lastName: e.target.value });
   };
-  console.log(userProfileData);
 
   return (
     <div className="main">
@@ -68,12 +78,12 @@ export default function ProfilePage() {
               <div className={styles.inputName}>
                 <input
                   type="text"
-                  value={userProfileData.firstName}
+                  value={updatedUserData.firstName || userProfileData.firstName}
                   onChange={handleFirstNameChange}
                 />
                 <input
                   type="text"
-                  value={userProfileData.lastName}
+                  value={updatedUserData.lastName || userProfileData.lastName}
                   onChange={handleLastNameChange}
                 />
               </div>
