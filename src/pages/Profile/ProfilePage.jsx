@@ -1,5 +1,5 @@
 import { React, useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+// import { useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import Account from '../../components/Account/Account';
 import styles from './Profile.module.css';
@@ -8,30 +8,24 @@ import { updateUser, profileUser } from '../../service/apiRequest';
 import { updateProfil } from '../../service/redux/authSlice';
 
 export default function ProfilePage() {
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   const dispatch = useDispatch();
   const token = useSelector((state) => state.auth.token);
-  const isLogged = useSelector((state) => state.auth.isLogged);
+  // const isLogged = useSelector((state) => state.auth.isLogged);
   const userProfileData = useSelector((state) => state.auth);
   const [isEditingName, setIsEditingName] = useState(false);
   const [updatedUserData, setUpdatedUserData] = useState({});
 
   useEffect(() => {
-    if (!isLogged) {
-      navigate('/login');
-    } else {
-      const fetchData = async () => {
-        try {
-          const response = await profileUser(token);
-          console.log(response);
-          dispatch(updateProfil(response.body));
-          console.log(response);
-        } catch (error) {
-          console.error(error);
-        }
-      };
-      fetchData();
-    }
+    const fetchData = async () => {
+      try {
+        const response = await profileUser(token);
+        dispatch(updateProfil(response.body));
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    fetchData();
   }, [token]);
 
   const handleSaveName = () => {

@@ -1,0 +1,155 @@
+swagger: "2.0"
+info:
+  title: Transactions API
+  description: API for managing transactions
+  version: "1.0"
+host: localhost:3001
+basePath: /api/v1
+
+paths:
+  /transaction/{accountId}:
+    get:
+      tags:
+        - Transaction Module
+      summary: Get all transactions for a specific account
+      parameters:
+        - name: accountId
+          in: path
+          description: The ID of the account to retrieve transactions for
+          required: true
+          type: string
+      responses:
+        200:
+          description: A list of transactions for the specified account
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Transaction'
+        400:
+          description: Invalid Fields
+        404:
+          description: The specified account could not be found
+        500:
+          description: Internal Server Error
+
+  /transaction/{accountId}/{transactionId}:
+    post:
+      tags:
+        - Transaction Module
+      summary: Add the category and notes for a transaction
+      parameters:
+        - name: accountId
+          in: path
+          description: The ID of the account containing the transaction
+          required: true
+          type: string
+        - name: transactionId
+          in: path
+          description: The ID of the transaction to Add
+          required: true
+          type: string
+        - name: updateData
+          in: body
+          description: The Added category and notes for the transaction
+          required: true
+          schema:
+            $ref: '#/definitions/TransactionUpdate'
+      responses:
+        200:
+          description: The updated transaction
+          schema:
+            $ref: '#/definitions/Transaction'
+        400:
+          description: Invalid Fields
+        500:
+          description: Internal Server Error
+    put:
+      tags:
+        - Transaction Module
+      summary: Update the category and notes for a transaction
+      parameters:
+        - name: accountId
+          in: path
+          description: The ID of the account containing the transaction
+          required: true
+          type: string
+        - name: transactionId
+          in: path
+          description: The ID of the transaction to update
+          required: true
+          type: string
+        - name: updateData
+          in: body
+          description: The updated category and notes for the transaction
+          required: true
+          schema:
+            $ref: '#/definitions/TransactionUpdate'
+      responses:
+        200:
+          description: The updated transaction
+          schema:
+            $ref: '#/definitions/Transaction'
+        400:
+          description: Invalid Fields
+        500:
+          description: Internal Server Error
+    delete:
+      tags:
+        - Transaction Module
+      summary: Delete the category and notes for a transaction
+      parameters:
+        - name: accountId
+          in: path
+          description: The ID of the account containing the transaction
+          required: true
+          type: string
+        - name: transactionId
+          in: path
+          description: The ID of the transaction to Delete
+          required: true
+          type: string
+        - name: updateData
+          in: body
+          description: The Deleted category and notes for the transaction
+          required: true
+          schema:
+            $ref: '#/definitions/TransactionUpdate'
+      responses:
+        200:
+          description: The Deleted transaction
+          schema:
+            $ref: '#/definitions/Transaction'
+        400:
+          description: Invalid Fields
+        500:
+          description: Internal Server Error
+
+definitions:
+  Transaction:
+    type: object
+    properties:
+      id:
+        type: string
+      date:
+        type: string
+        format: date-time
+      description:
+        type: string
+      amount:
+        type: string
+      balance:
+        type: string
+      type:
+        type: string
+      category:
+        type: string
+      note:
+        type: string
+
+  TransactionUpdate:
+    type: object
+    properties:
+      category:
+        type: string
+      note:
+        type: string
