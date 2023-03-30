@@ -1,5 +1,4 @@
 import { React, useEffect, useState } from 'react';
-// import { useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import Account from '../../components/Account/Account';
 import styles from './Profile.module.css';
@@ -8,10 +7,8 @@ import { updateUser, profileUser } from '../../service/apiRequest';
 import { updateProfil } from '../../service/redux/authSlice';
 
 export default function ProfilePage() {
-  // const navigate = useNavigate();
   const dispatch = useDispatch();
   const token = useSelector((state) => state.auth.token);
-  // const isLogged = useSelector((state) => state.auth.isLogged);
   const userProfileData = useSelector((state) => state.auth);
   const [isEditingName, setIsEditingName] = useState(false);
   const [updatedUserData, setUpdatedUserData] = useState({});
@@ -26,7 +23,7 @@ export default function ProfilePage() {
       }
     };
     fetchData();
-  }, [token]);
+  }, []);
 
   const handleSaveName = () => {
     updateUser(

@@ -27,6 +27,8 @@ paths:
               $ref: '#/definitions/Transaction'
         400:
           description: Invalid Fields
+        401:
+          description: Unauthorized request
         404:
           description: The specified account could not be found
         500:
@@ -61,6 +63,8 @@ paths:
             $ref: '#/definitions/Transaction'
         400:
           description: Invalid Fields
+        401:
+          description: Unauthorized request
         500:
           description: Internal Server Error
     put:
@@ -91,6 +95,8 @@ paths:
             $ref: '#/definitions/Transaction'
         400:
           description: Invalid Fields
+        401:
+          description: Unauthorized request
         500:
           description: Internal Server Error
     delete:
@@ -121,6 +127,8 @@ paths:
             $ref: '#/definitions/Transaction'
         400:
           description: Invalid Fields
+        401:
+          description: Unauthorized request
         500:
           description: Internal Server Error
 
