@@ -9,10 +9,17 @@ basePath: /api/v1
 paths:
   /transaction/{accountId}:
     get:
+      security:
+        - Bearer: []
       tags:
         - Transaction Module
       summary: Get all transactions for a specific account
       parameters:
+        - in: header
+          name: Authorization
+          description: Attach Bearer JWT token
+          required: true
+          type: string
         - name: accountId
           in: path
           description: The ID of the account to retrieve transactions for
@@ -36,10 +43,17 @@ paths:
 
   /transaction/{accountId}/{transactionId}:
     post:
+      security:
+        - Bearer: []
       tags:
         - Transaction Module
       summary: Add the category and notes for a transaction
       parameters:
+        - in: header
+          name: Authorization
+          description: Attach Bearer JWT token
+          required: true
+          type: string
         - name: accountId
           in: path
           description: The ID of the account containing the transaction
@@ -68,10 +82,17 @@ paths:
         500:
           description: Internal Server Error
     put:
+      security:
+        - Bearer: []
       tags:
         - Transaction Module
       summary: Update the category and notes for a transaction
       parameters:
+        - in: header
+          name: Authorization
+          description: Attach Bearer JWT token
+          required: true
+          type: string
         - name: accountId
           in: path
           description: The ID of the account containing the transaction
@@ -100,10 +121,17 @@ paths:
         500:
           description: Internal Server Error
     delete:
+      security:
+        - Bearer: []
       tags:
         - Transaction Module
       summary: Delete the category and notes for a transaction
       parameters:
+        - in: header
+          name: Authorization
+          description: Attach Bearer JWT token
+          required: true
+          type: string
         - name: accountId
           in: path
           description: The ID of the account containing the transaction
@@ -131,7 +159,11 @@ paths:
           description: Unauthorized request
         500:
           description: Internal Server Error
-
+securityDefinitions:
+  Bearer:
+    type: apiKey
+    name: Authorization
+    in: header
 definitions:
   Transaction:
     type: object
